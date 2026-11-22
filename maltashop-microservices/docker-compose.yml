@@ -12,9 +12,9 @@ services:
     build: ./order-service
     ports: ["8080:8000"]
     environment:
-      RABBITMQ_URL: ${RABBITMQ_URL}
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
       DB_PATH: /data/orders.db
-      LOG_LEVEL: ${LOG_LEVEL}
+      LOG_LEVEL: INFO
     volumes: ["order-data:/data"]
     depends_on:
       rabbitmq: {condition: service_healthy}
@@ -22,9 +22,9 @@ services:
   inventory-service:
     build: ./inventory-service
     environment:
-      RABBITMQ_URL: ${RABBITMQ_URL}
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
       DB_PATH: /data/inventory.db
-      LOG_LEVEL: ${LOG_LEVEL}
+      LOG_LEVEL: INFO
     volumes: ["inventory-data:/data"]
     depends_on:
       rabbitmq: {condition: service_healthy}
@@ -32,9 +32,9 @@ services:
   payment-service:
     build: ./payment-service
     environment:
-      RABBITMQ_URL: ${RABBITMQ_URL}
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
       DB_PATH: /data/payments.db
-      LOG_LEVEL: ${LOG_LEVEL}
+      LOG_LEVEL: INFO
     volumes: ["payment-data:/data"]
     depends_on:
       rabbitmq: {condition: service_healthy}
@@ -42,9 +42,9 @@ services:
   notification-service:
     build: ./notification-service
     environment:
-      RABBITMQ_URL: ${RABBITMQ_URL}
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
       DB_PATH: /data/notifications.db
-      LOG_LEVEL: ${LOG_LEVEL}
+      LOG_LEVEL: INFO
     volumes: ["notification-data:/data"]
     depends_on:
       rabbitmq: {condition: service_healthy}
