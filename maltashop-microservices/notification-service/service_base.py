@@ -52,7 +52,7 @@ def get_logger(service):
         handler = logging.StreamHandler(sys.stdout)  # 12-factor: logs are an event stream
         handler.setFormatter(JsonFormatter(service))
         logger.addHandler(handler)
-        logger.setLevel(os.getenv("LOG_LEVEL", "INFO"))
+        logger.setLevel("INFO")
         logger.propagate = False
     return logger
 
